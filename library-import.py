@@ -1,5 +1,5 @@
-landing_location = '/tmp/landing/'
-final_location = '/tmp/final/'
+landing_location = '/home/bms/import/'
+final_location = '/home/bms/orginals/'
 
 photo_types = ('.jpg', '.JPG', '.png', '.PNG', '.jpeg', '.JPEG')
 video_types = ('.mp4', '.avi', '.3gp')

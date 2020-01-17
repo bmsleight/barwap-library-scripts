@@ -1,6 +1,6 @@
 #!/bin/bash
 
-SAMABALOCATION="/media/gallery-upload/"
+SAMABALOCATION="/home/bms/nextcloud-files/photos/files/"
 LANDINGLOCATION="/home/bms/import/"
 #SAMABALOCATION="/tmp/samba/"
 #LANDINGLOCATION="/tmp/landing/"
@@ -15,12 +15,13 @@ then
 else
   # can Python not move accross filesystem bach can
   mv -f $SAMABALOCATION/* $LANDINGLOCATION
-  /usr/bin/python  /home/bms/barwap-library-scripts/library-import.py
+  sudo nextcloud.occ files:scan photos
+  /usr/bin/python3  /home/bms/barwap-library-scripts/library-import.py
   if [ $? -eq 0 ]
   then
     # New files
     # echo "Run sigal"
-    /usr/bin/python /usr/local/bin/sigal build -v -c /home/bms/barwap-library-scripts/sigal.conf.py /home/bms/orginals/ /home/bms/library.barwap.com/html/
+    /usr/bin/python3 /usr/local/bin/sigal build -v -c /home/bms/barwap-library-scripts/sigal.conf.py /home/bms/orginals/ /home/bms/library.barwap.com/html/
     exit 0
   else
     # No files to import so exit code 1 

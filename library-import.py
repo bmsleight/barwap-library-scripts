@@ -26,14 +26,14 @@ def move(date_taken, filename):
     try: 
         skip = os.path.isfile(final_filename) 
         if skip:
-            print "Removing duplicate: ", filename
+            print ("Removing duplicate: ", filename)
             os.remove(filename)
         if not skip:
             try:
                 os.makedirs(final_location_full)
             except:
                 pass
-            print "Moving ", filename, " to ", final_filename
+            print ("Moving ", filename, " to ", final_filename)
             os.rename(filename, final_filename)
             moved = True
             try:
@@ -41,7 +41,7 @@ def move(date_taken, filename):
             except:
                 pass
     except OSError:
-        print "[MOVE] Error for: ", filename
+        print ("[MOVE] Error for: ", filename)
     return moved
 
 
@@ -61,7 +61,7 @@ for filename in photos_in_landing_location:
             if(move(date_taken, filename)):
                 flag_new_files = True
         except:
-            print "[EXIF] Error for: ", filename
+            print ("[EXIF] Error for: ", filename)
 
 for filename in videos_in_landing_location:
     base_filename = os.path.basename(filename)
@@ -78,7 +78,7 @@ for filename in videos_in_landing_location:
         if(move(date_taken, filename)):
             flag_new_files = True
     except:
-        print "[VIDEO DATE] Error for: ", filename
+        print ("[VIDEO DATE] Error for: ", filename)
 
 
 # Set exit codes

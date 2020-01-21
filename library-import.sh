@@ -4,7 +4,7 @@ SAMABALOCATION="/home/bms/nextcloud-files/photos/files/"
 LANDINGLOCATION="/home/bms/import/"
 #SAMABALOCATION="/tmp/samba/"
 #LANDINGLOCATION="/tmp/landing/"
-# /usr/bin/flock -n /home/bms/importing.lock -c "/bin/bash /home/bms/barwap-library-scripts/library-import.sh"
+# /usr/bin/flock -n /tmp/importing.lock -c "/bin/bash /home/bms/barwap-library-scripts/library-import.sh"
 
 #if [ "$(ls -A $DIR)" ]; then
 if [ "$(find $SAMABALOCATION -maxdepth 0 -empty)" ]
@@ -13,7 +13,9 @@ then
   # echo "No files" 
   exit 1
 else
-  # can Python not move accross filesystem bach can
+  # If empty gets removed
+  mkdir $LANDINGLOCATION
+  # move them form Nextcloud to landing location
   mv -f $SAMABALOCATION/* $LANDINGLOCATION
   sudo nextcloud.occ files:scan photos
   /usr/bin/python3  /home/bms/barwap-library-scripts/library-import.py

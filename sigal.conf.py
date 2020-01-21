@@ -26,7 +26,7 @@ source = '/home/bms/orginals/'
 theme = 'galleria'
 
 # Author. Used in the footer of the pages and in the author meta tag.
-author = '1996-2016 https://library.barwap.com'
+author = '1996-2020 https://library.barwap.com'
 
 # Use originals in gallery (default: False). If True, this will bypass all
 # processing steps (resize, auto-orient, recompress, and any plugin-specific
@@ -216,7 +216,7 @@ plugins = ['sigal.plugins.copyright']
 
 
 # Add a copyright text on the image (default: '')
-copyright = u"© 1996-2016 https://library.barwap.com"
+copyright = u"© 1996-2020 https://library.barwap.com"
 copyright_text_font = '/usr/share/fonts/truetype/droid/DroidSans-Bold.ttf'
 copyright_text_color = (224,224,224)
 copyright_text_font_size = 16

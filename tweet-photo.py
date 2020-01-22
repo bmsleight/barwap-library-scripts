@@ -1,12 +1,14 @@
 import os, random
 import configparser
 import tweepy
-
+from datetime import datetime
 
 photo_types = ('.jpg', '.JPG', '.jpeg', '.JPEG')
 src = "/home/bms/library.barwap.com/html/"
 photo_file = "/home/bms/library.barwap.com/html/photos.txt"
 secrets = 'secrets.ini'
+followers = " [ @bmsleight @sploshy ] "
+
 
 def getPhotosList(src=src):
     photos = []
@@ -29,12 +31,23 @@ def writePhotoList():
 def randomlink():
     photos = getPhotosList()
     randomPhoto = random.choice(photos)
-    url = "https://library.barwap.com/" +  randomPhoto
     filename = src + randomPhoto
     year = randomPhoto.split("/")[0]
-    return (url, filename, year)
+    month = randomPhoto.split("/")[1]
+    url = "https://library.barwap.com/" + year  + "/" + month
+    purl = "https://library.barwap.com/" + randomPhoto 
+    return (url, purl, filename, year)
 
 def tweetPhoto():
+    url, purl, filename, year = randomlink()
+    now = datetime.now()
+    if (now.strftime("%p") == 'AM'):
+        greeting = "Morning followers"
+    else:
+        greeting = "Evening followers"
+    status =  greeting + followers + "\n"
+    status += "Todays photo is from " + str(year) + "\n"
+    status += url + "\n" + purl
     config = configparser.ConfigParser()
     config.read('secrets.ini')
     auth = tweepy.OAuthHandler(config['keys']['consumer_key'], 
@@ -42,8 +55,6 @@ def tweetPhoto():
     auth.set_access_token(config['keys']['access_token'], 
                           config['keys']['access_token_secret'])
     api = tweepy.API(auth)
-    url, filename, year = randomlink()
-    status = "Todays photo from " + str(year) + " " + url 
     print(status, filename)
     api.update_with_media(filename, status)
 

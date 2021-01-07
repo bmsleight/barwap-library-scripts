@@ -1,5 +1,6 @@
 #!/usr/bin/env sh
 
+cd "$(dirname "$0")"
 
 while true
 do

@@ -1,0 +1,17 @@
+#  https://wiki.debian.org/systemd/Services
+# sudo cp ./randomphoto.service /etc/systemd/system/
+# sudo systemctl daemon-reload
+# sudo systemctl enable randomphoto.service
+# sudo systemctl start randomphoto.service
+
+[Unit]
+Description=Random Photo For Kindle on 8080
+After=network.target
+
+[Service]
+Type=simple
+Restart=always
+ExecStart=/bin/bash  /home/bms/barwap-library-scripts/convertrandom.sh
+
+[Install]
+WantedBy=multi-user.target

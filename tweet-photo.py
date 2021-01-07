@@ -6,7 +6,7 @@ from datetime import datetime
 photo_types = ('.jpg', '.JPG', '.jpeg', '.JPEG')
 src = "/home/bms/library.barwap.com/html/"
 photo_file = "/home/bms/library.barwap.com/html/photos.txt"
-secrets = 'secrets.ini'
+secrets = '/home/bms/barwap-library-scripts/secrets.ini'
 followers = " [ @bmsleight @sploshy ] "
 
 
@@ -49,8 +49,8 @@ def tweetPhoto():
     status += "Todays photo is from " + str(year) + "\n"
     status += url + "\n" + purl
     config = configparser.ConfigParser()
-    config.read('secrets.ini')
-    auth = tweepy.OAuthHandler(config['keys']['consumer_key'], 
+    config.read(secrets)
+    auth = tweepy.OAuthHandler(config['keys']['consumer_key'],
                                config['keys']['consumer_secret'])
     auth.set_access_token(config['keys']['access_token'], 
                           config['keys']['access_token_secret'])

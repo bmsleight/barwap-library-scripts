@@ -10,7 +10,7 @@ LANDINGLOCATION="/home/bms/import/"
 if [ "$(find $SAMABALOCATION -maxdepth 0 -empty)" ]
 then
   # No files to import so exit code 1
-  # echo "No files" 
+  echo "No files" 
   exit 1
 else
   # If empty gets removed
@@ -27,7 +27,7 @@ else
     exit 0
   else
     # No files to import so exit code 1 
-    # echo "No files Moved by library-import.py" 
+    echo "No files Moved by library-import.py" 
     exit 1
   fi
 fi

@@ -61,7 +61,24 @@ for filename in photos_in_landing_location:
             if(move(date_taken, filename)):
                 flag_new_files = True
         except:
-            print ("[EXIF] Error for: ", filename)
+            print ("Trying filename 8 digits for: ", filename)
+            try:
+                base_filename = os.path.basename(filename)
+                index = 0
+                for i, c in enumerate(base_filename):
+                    if c.isdigit():
+                        index = i
+                        break
+                try:
+                    date_from_filename = base_filename[index:index+8]
+                    # This will check we have a real date in the format YYYYMMDD
+                    date_taken = datetime.datetime.strptime(date_from_filename, "%Y%m%d")
+                    if(move(date_taken, filename)):
+                        flag_new_files = True
+                except:
+                    print ("[EXIF] Error for: ", filename)
+            except:
+                print ("[EXIF] Error for: ", filename)
 
 for filename in videos_in_landing_location:
     base_filename = os.path.basename(filename)

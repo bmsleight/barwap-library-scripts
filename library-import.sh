@@ -18,7 +18,7 @@ else
   # move them form Nextcloud to landing location
   mv -f $SAMABALOCATION/* $LANDINGLOCATION
   sudo nextcloud.occ files:scan photos
-  /usr/bin/python3  /home/bms/barwap-library-scripts/library-import.py
+  /usr/bin/python3  /home/bms/barwap-library-scripts/library-import.py >/tmp/li.log 2>&1
   if [ $? -eq 0 ]
   then
     # New files
